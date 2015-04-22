@@ -18,6 +18,7 @@ import android.util.ArrayMap;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 public class ProxySetting {
 	
@@ -107,7 +108,7 @@ public class ProxySetting {
 	        proxyHostField.setAccessible(temp);
 	    }
 
-	    Log.d(LOG_TAG, "Setting proxy with <= 3.2 API successful!");
+	    Toast.makeText(webview.getContext(), "Setting proxy with <= 3.2 API successful!", 0).show();
 	    return true;
 	}
 
@@ -143,7 +144,7 @@ public class ProxySetting {
 
 	        updateProxyInstance.invoke(sJavaBridge, ppcont.newInstance(host, port, null));
 
-	        Log.d(LOG_TAG, "Setting proxy with 4.0 API successful!");
+	        Toast.makeText(webview.getContext(), "Setting proxy with 4.0 API successful!", 0).show();
 	        return true;
 	    }
 	    catch (Exception ex)
@@ -197,17 +198,17 @@ public class ProxySetting {
 	        return false;
 	    }
 
-	    Log.d(LOG_TAG, "Setting proxy with 4.1 - 4.3 API successful!");
+	    Toast.makeText(webview.getContext(), "Setting proxy with 4.1 - 4.3 API successful!", 0).show();
 	    return true;
 	}
 
 	// from https://stackoverflow.com/questions/19979578/android-webview-set-proxy-programatically-kitkat
 	@SuppressLint("NewApi")
 	@SuppressWarnings("all")
-	private static boolean setProxyKKPlus(WebView webView, String host, int port, String applicationClassName) {
+	private static boolean setProxyKKPlus(WebView webview, String host, int port, String applicationClassName) {
 	    Log.d(LOG_TAG, "Setting proxy with >= 4.4 API.");
 
-	    Context appContext = webView.getContext().getApplicationContext();
+	    Context appContext = webview.getContext().getApplicationContext();
 	    System.setProperty("http.proxyHost", host);
 	    System.setProperty("http.proxyPort", port + "");
 	    System.setProperty("https.proxyHost", host);
@@ -233,7 +234,7 @@ public class ProxySetting {
 	            }
 	        }
 
-	        Log.d(LOG_TAG, "Setting proxy with >= 4.4 API successful!");
+	        Toast.makeText(webview.getContext(), "Setting proxy with >= 4.4 API successful!", 0).show();
 	        return true;
 	    } catch (ClassNotFoundException e) {
 	        StringWriter sw = new StringWriter();
