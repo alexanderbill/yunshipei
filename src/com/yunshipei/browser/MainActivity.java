@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
             mWebview.getSettings().setJavaScriptEnabled(true);
             mWebview.setWebViewClient(new HelloWebViewClient()); 
             mWebview.loadUrl("http://m.baidu.com");
-            ProxySetting.setProxy(mWebview, "192.168.1.55", 8888, "");
+            ProxySetting.setProxy(mWebview, "211.157.146.27", 3128, "");
             EditText edittext = (EditText) rootView.findViewById(R.id.edittext_url);
             edittext.setOnEditorActionListener(new OnEditorActionListener() {
 
